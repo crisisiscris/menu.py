@@ -1,22 +1,24 @@
-def outputMenu(menuData):
-	for currEntryAlias in menuData:
-		currEntry = menuData[currEntryAlias]
-		currEntryName = currEntry[0]
-		currEntryValue = currEntry[1]
-		print "\t", currEntryName, "-", currEntryValue
-	print "Type the chararacters shown in square brackets:",
+def output_menu(menu_data):
+    for currEntryAlias in menu_data:
+        curr_entry = menu_data[currEntryAlias]
+        curr_entry_name = curr_entry[0]
+        curr_entry_value = curr_entry[1]
+        print("\t", curr_entry_name, "-", curr_entry_value)
+    print("Type the characters shown in square brackets:")
 
-def getSelectionAttempt(menuRequest, menuData):
-	print menuRequest
-	outputMenu(menuData)
-	return raw_input()
 
-def getSelection(menuRequest, menuData, maxTries=3):
-	for i in range(maxTries):
-		try:
-			selection = getSelectionAttempt(menuRequest, menuData)
-			break
-		except KeyError:
-			print "You did not select a valid option"
-	return menuData[selection.lower()][1]
+def get_selection_attempt(menu_request, menu_data):
+    print(menu_request)
+    output_menu(menu_data)
+    return input()
 
+
+def get_selection(menu_request, menu_data, max_tries=3):
+    selection = ""
+    for i in range(max_tries):
+        try:
+            selection = get_selection_attempt(menu_request, menu_data)
+            break
+        except KeyError:
+            print("You did not select a valid option")
+    return menu_data[selection.lower()][1]
